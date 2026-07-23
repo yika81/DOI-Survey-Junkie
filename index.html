@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Share Your Opinion – Earn Gift Cards</title>
+  <style>
+    /* ── Reset & Base ── */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(145deg, #f6f9fc 0%, #e9f2f7 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      margin: 0;
+    }
+
+    /* ── Card ── */
+    .card {
+      max-width: 540px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 2.5rem;
+      padding: 2.5rem 2rem 2.2rem;
+      box-shadow: 0 20px 60px rgba(0, 20, 40, 0.12), 0 8px 24px rgba(0, 0, 0, 0.04);
+      transition: transform 0.2s ease;
+      text-align: center;
+    }
+
+    /* ── Badge / Trust Seal ── */
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #eef8f1;
+      color: #1e7b4a;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      letter-spacing: 0.3px;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+    .trust-badge span {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    /* ── Headline ── */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0b1a2e;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    h1 .highlight {
+      color: #2a9d8f;
+    }
+
+    .sub-headline {
+      font-size: 1rem;
+      color: #4a5b6e;
+      margin-bottom: 1.8rem;
+      font-weight: 400;
+    }
+    .sub-headline strong {
+      color: #0b1a2e;
+      font-weight: 600;
+    }
+
+    /* ── Social Proof ── */
+    .social-proof {
+      background: #f8faff;
+      border-radius: 1.2rem;
+      padding: 0.8rem 1.2rem;
+      margin-bottom: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: #1a2a3a;
+      border: 1px solid #e6edf4;
+    }
+    .social-proof .stars {
+      color: #f4b740;
+      letter-spacing: 2px;
+      font-size: 1.1rem;
+    }
+    .social-proof .count {
+      font-weight: 700;
+      color: #0b1a2e;
+    }
+
+    /* ── Benefits (no checkboxes!) ── */
+    .benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin: 2rem 0 2.2rem;
+      text-align: left;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-size: 1rem;
+      color: #1f3348;
+      font-weight: 500;
+      background: #f9fbfd;
+      padding: 0.7rem 1.2rem;
+      border-radius: 1rem;
+      transition: background 0.15s;
+    }
+    .benefit-item:hover {
+      background: #f2f6fc;
+    }
+
+    .benefit-item .icon {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      background: #e1f0ee;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #1e7b4a;
+    }
+
+    .benefit-item .text {
+      flex: 1;
+    }
+    .benefit-item .text small {
+      display: block;
+      font-weight: 400;
+      font-size: 0.8rem;
+      color: #6a7f94;
+      margin-top: 0.1rem;
+    }
+
+    /* ── CTA Form ── */
+    .cta-form {
+      margin-top: 0.5rem;
+    }
+
+    .cta-form button {
+      width: 100%;
+      background: #2a9d8f;
+      border: none;
+      padding: 1rem 1.5rem;
+      border-radius: 3rem;
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 8px 24px rgba(42, 157, 143, 0.35);
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+    .cta-form button:hover {
+      background: #23877b;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(42, 157, 143, 0.45);
+    }
+    .cta-form button:active {
+      transform: translateY(0);
+    }
+
+    .cta-form button .arrow {
+      font-size: 1.4rem;
+      line-height: 1;
+      transition: transform 0.2s;
+    }
+    .cta-form button:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    /* ── Footer fine-print ── */
+    .footer-note {
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      color: #8a9db0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-note span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .card {
+        padding: 1.8rem 1.2rem 1.8rem;
+        border-radius: 1.8rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      .benefit-item {
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+      }
+      .cta-form button {
+        font-size: 1rem;
+        padding: 0.9rem 1.2rem;
+      }
+      .social-proof {
+        font-size: 0.8rem;
+        padding: 0.5rem 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <!-- Trust Badge -->
+    <div class="trust-badge">
+      <span>🔒</span> SSL Encrypted &bull; 100% Private
+    </div>
+
+    <!-- Headline -->
+    <h1>
+      Your Opinion.<br />
+      <span class="highlight">$5 Gift Card.</span>
+    </h1>
+    <p class="sub-headline">
+      <strong>Share your thoughts</strong> in quick surveys and get rewarded instantly.
+    </p>
+
+    <!-- Social Proof -->
+    <div class="social-proof">
+      <span class="stars">★★★★★</span>
+      <span><span class="count">50,000+</span> members earned <strong>$200+</strong> this year</span>
+    </div>
+
+    <!-- Benefits (Clean, no checkboxes) -->
+    <div class="benefits">
+      <div class="benefit-item">
+        <div class="icon">✅</div>
+        <div class="text">
+          Free to join
+          <small>No fees, no hidden costs</small>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="icon">🎁</div>
+        <div class="text">
+          Earn for every survey
+          <small>Redeem for Amazon, PayPal &amp; more</small>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="icon">🛡️</div>
+        <div class="text">
+          Your data is safe
+          <small>We never sell or share your info</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <form class="cta-form" action="#" method="GET">
+      <!-- Replace action="#" with your actual survey router URL -->
+      <button type="submit">
+        Claim Your Gift Card
+        <span class="arrow">→</span>
+      </button>
+    </form>
+
+    <!-- Footer -->
+    <div class="footer-note">
+      <span>⏱ 2–5 min surveys</span>
+      <span>•</span>
+      <span>📱 Works on any device</span>
+      <span>•</span>
+      <span>🏆 4.8/5 rating</span>
+    </div>
+
+  </div>
+
+</body>
+</html>
